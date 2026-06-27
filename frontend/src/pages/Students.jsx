@@ -105,6 +105,7 @@ export default function Students() {
       </div>
 
       <StudentModal
+        key={selectedId}
         studentId={selectedId}
         onClose={() => setSelectedId(null)}
       />

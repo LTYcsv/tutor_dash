@@ -181,7 +181,7 @@ export default function StudentModal({ studentId, onClose }) {
                   <tr>{['Дата', 'Сумма', 'Статус'].map(h => <th key={h} className="text-left py-2 px-2.5 text-xs text-[#64748B] uppercase tracking-wide border-b border-[#E2E8F0]">{h}</th>)}</tr>
                 </thead>
                 <tbody>
-                  {student.payments.map(p => (
+                  {(student.payments ?? []).map(p => (
                     <tr key={p.id} className="border-b border-[#E2E8F0] last:border-0">
                       <td className="py-2.5 px-2.5 text-[13.5px]">{new Date(p.dueDate).toLocaleDateString('ru')}</td>
                       <td className="py-2.5 px-2.5 font-bold tabular-nums">₽{Number(p.amount).toLocaleString('ru')}</td>
@@ -194,13 +194,13 @@ export default function StudentModal({ studentId, onClose }) {
 
             {tab === 'notes' && (
               <div>
-                {student.notes.map(note => (
+                {(student.notes ?? []).map(note => (
                   <div key={note.id} className="bg-[#F8FAFC] rounded-xl p-3.5 mb-3">
                     <div className="text-[#64748B] text-xs font-semibold mb-1">{new Date(note.createdAt).toLocaleDateString('ru')}</div>
                     <div className="text-sm">{note.content}</div>
                   </div>
                 ))}
-                {student.notes.length === 0 && <p className="text-[#64748B] text-sm">Заметок пока нет</p>}
+                {(student.notes ?? []).length === 0 && <p className="text-[#64748B] text-sm">Заметок пока нет</p>}
               </div>
             )}
           </div>
