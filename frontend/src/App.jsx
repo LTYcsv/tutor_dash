@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
+import Layout from './components/Layout';
 
 // Placeholder pages — replaced in later tasks
 const Dashboard = () => <div className="p-8 text-slate-500">Дашборд — скоро</div>;
@@ -23,11 +24,13 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-      <Route path="/students" element={<PrivateRoute><Students /></PrivateRoute>} />
-      <Route path="/schedule" element={<PrivateRoute><Schedule /></PrivateRoute>} />
-      <Route path="/finance" element={<PrivateRoute><Finance /></PrivateRoute>} />
-      <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+      <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/students" element={<Students />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/finance" element={<Finance />} />
+        <Route path="/settings" element={<Settings />} />
+      </Route>
     </Routes>
   );
 }
