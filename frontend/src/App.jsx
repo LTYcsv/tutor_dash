@@ -5,9 +5,7 @@ import { ToastProvider } from './context/ToastContext';
 import Login from './pages/Login';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
-
-// Placeholder pages — replaced in later tasks
-const Students = () => <div className="p-8 text-slate-500">Ученики — скоро</div>;
+import Students from './pages/Students';
 const Schedule = () => <div className="p-8 text-slate-500">Расписание — скоро</div>;
 const Finance = () => <div className="p-8 text-slate-500">Финансы — скоро</div>;
 const Settings = () => <div className="p-8 text-slate-500">Настройки — скоро</div>;
