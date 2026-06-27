@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Students from './pages/Students';
-const Schedule = () => <div className="p-8 text-slate-500">Расписание — скоро</div>;
+import Schedule from './pages/Schedule';
 const Finance = () => <div className="p-8 text-slate-500">Финансы — скоро</div>;
 const Settings = () => <div className="p-8 text-slate-500">Настройки — скоро</div>;
 
