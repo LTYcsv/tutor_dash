@@ -97,6 +97,7 @@ model Payment {
   status    PaymentStatus  @default(PENDING)
   paidAt    DateTime?
   dueDate   DateTime
+  createdAt DateTime  @default(now())
 
   student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
