@@ -6,12 +6,6 @@ import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 
-const PAY_STATUS = {
-  PAID: ['green', 'Оплачено'],
-  PENDING: ['yellow', 'Ожидает'],
-  OVERDUE: ['red', 'Просрочено']
-};
-
 const SESSION_STATUS = {
   CONFIRMED: ['blue', 'Подтверждено'],
   UNCONFIRMED: ['yellow', 'Не подтверждено'],
@@ -35,17 +29,18 @@ function timeAgo(dateStr) {
 export default function Dashboard() {
   const { tutor } = useAuth();
   const navigate = useNavigate();
-  const { data, isLoading } = useQuery({ queryKey: ['dashboard'], queryFn: getDashboard });
+  const { data, isLoading, isError } = useQuery({ queryKey: ['dashboard'], queryFn: getDashboard });
 
   if (isLoading) return <div className="text-[#64748B] p-8">Загрузка…</div>;
+  if (isError) return <div className="text-red-600 p-8">Ошибка загрузки данных</div>;
 
   const { metrics, todaySessions, recentActivity } = data;
 
   const METRIC_CARDS = [
-    { label: 'Всего учеников', value: metrics.studentCount, icon: '👥', bg: 'bg-[#EEF2FF]', color: 'text-[#4F46E5]', trend: '', trendClass: '' },
-    { label: 'Занятий в месяце', value: metrics.sessionsThisMonth, icon: '📅', bg: 'bg-[#DBEAFE]', color: 'text-[#2563EB]', trend: '', trendClass: '' },
-    { label: 'Доход за месяц', value: `₽${fmt(metrics.incomeThisMonth)}`, icon: '💰', bg: 'bg-[#DCFCE7]', color: 'text-[#16A34A]', trend: '', trendClass: '' },
-    { label: 'Неоплаченных счетов', value: metrics.overduePayments, icon: '⚠️', bg: 'bg-[#FEE2E2]', color: 'text-[#DC2626]', trend: '', trendClass: 'text-[#DC2626]' }
+    { label: 'Всего учеников', value: metrics.studentCount, icon: '👥', bg: 'bg-[#EEF2FF]', color: 'text-[#4F46E5]' },
+    { label: 'Занятий в месяце', value: metrics.sessionsThisMonth, icon: '📅', bg: 'bg-[#DBEAFE]', color: 'text-[#2563EB]' },
+    { label: 'Доход за месяц', value: `₽${fmt(metrics.incomeThisMonth)}`, icon: '💰', bg: 'bg-[#DCFCE7]', color: 'text-[#16A34A]' },
+    { label: 'Неоплаченных счетов', value: metrics.overduePayments, icon: '⚠️', bg: 'bg-[#FEE2E2]', color: 'text-[#DC2626]' }
   ];
 
   return (
@@ -123,7 +118,7 @@ export default function Dashboard() {
               <p className="text-[#64748B] text-sm px-5 py-4">Нет событий за последние 7 дней</p>
             )}
             {recentActivity.map((event, i) => (
-              <div key={i} className="flex gap-3 px-5 py-3">
+              <div key={event.time + i} className="flex gap-3 px-5 py-3">
                 <div className="w-[34px] h-[34px] rounded-full flex-shrink-0 flex items-center justify-center text-[15px] bg-[#DCFCE7] text-[#16A34A]">
                   {event.icon}
                 </div>
