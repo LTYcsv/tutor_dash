@@ -16,6 +16,10 @@ app.use('/api/students', require('./routes/students'));
 
 app.use('/api/sessions', require('./routes/sessions'));
 
+app.use('/api/homework', require('./routes/homework'));
+app.use('/api/topics', require('./routes/topics'));
+app.use('/api/notes', require('./routes/notes'));
+
 // Routes uncommented task-by-task:
 // app.use('/api/dashboard', require('./routes/dashboard'));
 // app.use('/api/students', require('./routes/students'));
