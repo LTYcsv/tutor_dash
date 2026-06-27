@@ -14,6 +14,8 @@ app.use('/api', require('./middleware/auth').authenticate);
 
 app.use('/api/students', require('./routes/students'));
 
+app.use('/api/sessions', require('./routes/sessions'));
+
 // Routes uncommented task-by-task:
 // app.use('/api/dashboard', require('./routes/dashboard'));
 // app.use('/api/students', require('./routes/students'));
