@@ -20,6 +20,8 @@ app.use('/api/homework', require('./routes/homework'));
 app.use('/api/topics', require('./routes/topics'));
 app.use('/api/notes', require('./routes/notes'));
 
+app.use('/api/payments', require('./routes/payments'));
+
 // Routes uncommented task-by-task:
 // app.use('/api/dashboard', require('./routes/dashboard'));
 // app.use('/api/students', require('./routes/students'));
