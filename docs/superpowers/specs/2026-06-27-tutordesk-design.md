@@ -30,7 +30,8 @@ tutor/
 ```
 tutors           (id, name, email, password_hash, rate_per_hour, timezone, updated_at)
 
-students         (id, name, initials, color, phone, parent_contact, enrolled_since, created_at)
+students         (id, name, initials?, color, phone, parent_contact, enrolled_since, created_at)
+                 -- initials: nullable, auto-generated from name on create, tutor can override
 
 student_subjects (id, student_id → students, subject, level, rate_per_hour?)
                          ↓
@@ -40,8 +41,10 @@ sessions         (id, student_subject_id → student_subjects, start_time, durat
                   status: CONFIRMED | UNCONFIRMED | COMPLETED | CANCELLED)
                          ↓
 homework         (id, session_id → sessions, title,
-                  status: ASSIGNED | SUBMITTED | CHECKED | OVERDUE,
+                  status: ASSIGNED | SUBMITTED | CHECKED,
                   grade?, updated_at)
+                 -- OVERDUE не хранится: вычисляется в сервисе как
+                 -- status=ASSIGNED AND session.start_time < NOW() - 7 days
 
 payments         (id, student_id → students, amount, method: CARD | CASH | TRANSFER,
                   status: PAID | PENDING | OVERDUE, paid_at?, due_date)
