@@ -12,6 +12,8 @@ app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api', require('./middleware/auth').authenticate);
 
+app.use('/api/students', require('./routes/students'));
+
 // Routes uncommented task-by-task:
 // app.use('/api/dashboard', require('./routes/dashboard'));
 // app.use('/api/students', require('./routes/students'));
