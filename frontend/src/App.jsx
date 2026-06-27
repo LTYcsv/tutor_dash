@@ -4,9 +4,9 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import Login from './pages/Login';
 import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
 
 // Placeholder pages — replaced in later tasks
-const Dashboard = () => <div className="p-8 text-slate-500">Дашборд — скоро</div>;
 const Students = () => <div className="p-8 text-slate-500">Ученики — скоро</div>;
 const Schedule = () => <div className="p-8 text-slate-500">Расписание — скоро</div>;
 const Finance = () => <div className="p-8 text-slate-500">Финансы — скоро</div>;
