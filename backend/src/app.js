@@ -9,9 +9,10 @@ app.use(express.json());
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api', require('./middleware/auth').authenticate);
+
 // Routes uncommented task-by-task:
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api', require('./middleware/auth').authenticate);
 // app.use('/api/dashboard', require('./routes/dashboard'));
 // app.use('/api/students', require('./routes/students'));
 // app.use('/api/sessions', require('./routes/sessions'));
