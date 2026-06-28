@@ -21,16 +21,18 @@ router.get('/', async (req, res, next) => {
     const [
       todaySessions,
       weekSessions,
-      studentsCount,
-      pendingPayments,
+      studentCount,
+      overduePayments,
       monthPaidPayments,
+      sessionsThisMonth,
       recentActivity
     ] = await Promise.all([
       prisma.session.findMany({ where: { startTime: { gte: todayStart, lt: todayEnd } }, ...sessionInclude, orderBy: { startTime: 'asc' } }),
       prisma.session.findMany({ where: { startTime: { gte: weekStart, lt: weekEnd } }, ...sessionInclude, orderBy: { startTime: 'asc' } }),
       prisma.student.count(),
-      prisma.payment.count({ where: { status: 'PENDING' } }),
-      prisma.payment.aggregate({ where: { status: 'PAID', createdAt: { gte: monthStart, lt: monthEnd } }, _sum: { amount: true } }),
+      prisma.payment.count({ where: { status: { in: ['PENDING', 'OVERDUE'] } } }),
+      prisma.payment.aggregate({ where: { status: 'PAID', dueDate: { gte: monthStart, lt: monthEnd } }, _sum: { amount: true } }),
+      prisma.session.count({ where: { startTime: { gte: monthStart, lt: monthEnd } } }),
       getRecentActivity(10)
     ]);
 
@@ -38,10 +40,11 @@ router.get('/', async (req, res, next) => {
       todaySessions,
       weekSessions,
       recentActivity,
-      stats: {
-        studentsCount,
-        monthEarnings: monthPaidPayments._sum.amount ?? 0,
-        pendingPayments
+      metrics: {
+        studentCount,
+        sessionsThisMonth,
+        incomeThisMonth: monthPaidPayments._sum.amount ?? 0,
+        overduePayments
       }
     });
   } catch (err) {

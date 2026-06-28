@@ -17,6 +17,13 @@ function fmt(n) {
   return Number(n).toLocaleString('ru');
 }
 
+function highlightNames(text) {
+  if (!text) return null;
+  return text.split(/([А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+)/g).map((part, i) =>
+    /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/.test(part) ? <b key={i}>{part}</b> : part
+  );
+}
+
 function timeAgo(dateStr) {
   const diff = Date.now() - new Date(dateStr).getTime();
   const min = Math.floor(diff / 60000);
@@ -123,7 +130,7 @@ export default function Dashboard() {
                   {event.icon}
                 </div>
                 <div>
-                  <div className="text-[13.5px]" dangerouslySetInnerHTML={{ __html: event.text.replace(/([А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+)/g, '<b>$1</b>') }} />
+                  <div className="text-[13.5px]">{highlightNames(event.text)}</div>
                   <div className="text-[#94A3B8] text-xs mt-0.5">{timeAgo(event.time)}</div>
                 </div>
               </div>

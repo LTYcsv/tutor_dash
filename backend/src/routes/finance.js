@@ -5,36 +5,69 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const { month } = req.query;
     const now = new Date();
-    const ref = month ? new Date(`${month}-01`) : new Date(now.getFullYear(), now.getMonth(), 1);
-    const monthStart = new Date(ref.getFullYear(), ref.getMonth(), 1);
-    const monthEnd = new Date(ref.getFullYear(), ref.getMonth() + 1, 1);
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 
-    const where = { dueDate: { gte: monthStart, lt: monthEnd } };
+    // Last 6 months range
+    const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
 
-    const [payments, paidAgg, pendingAgg] = await Promise.all([
+    const [allPaid, allDebt, chartPayments, paymentLog] = await Promise.all([
+      // Paid this month
       prisma.payment.findMany({
-        where,
+        where: { dueDate: { gte: monthStart, lt: monthEnd }, status: 'PAID' },
+        select: { amount: true }
+      }),
+      // Pending/overdue (all time) for debt metrics
+      prisma.payment.findMany({
+        where: { status: { in: ['PENDING', 'OVERDUE'] } },
+        select: { amount: true, studentId: true }
+      }),
+      // Last 6 months paid for chart
+      prisma.payment.findMany({
+        where: { dueDate: { gte: sixMonthsAgo }, status: 'PAID' },
+        select: { amount: true, dueDate: true }
+      }),
+      // Payment log: all payments this month
+      prisma.payment.findMany({
+        where: { dueDate: { gte: monthStart, lt: monthEnd } },
         include: { student: { select: { id: true, name: true, initials: true, color: true } } },
         orderBy: { dueDate: 'desc' }
-      }),
-      prisma.payment.findMany({ where: { ...where, status: 'PAID' }, select: { method: true, amount: true } }),
-      prisma.payment.aggregate({ where: { ...where, status: 'PENDING' }, _sum: { amount: true } })
+      })
     ]);
 
-    const total = paidAgg.reduce((sum, p) => sum + Number(p.amount), 0);
-    const byMethod = paidAgg.reduce((acc, p) => {
-      if (!p.method) return acc;
-      acc[p.method] = (acc[p.method] || 0) + Number(p.amount);
-      return acc;
-    }, {});
+    const incomeThisMonth = allPaid.reduce((s, p) => s + Number(p.amount), 0);
+    const totalDebt = allDebt.reduce((s, p) => s + Number(p.amount), 0);
+    const debtorCount = new Set(allDebt.map(p => p.studentId)).size;
+    const avgCheck = allPaid.length ? Math.round(incomeThisMonth / allPaid.length) : 0;
+
+    // Build chartData: one entry per month for last 6 months
+    const monthTotals = {};
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      const label = d.toLocaleString('ru', { month: 'short' });
+      monthTotals[key] = { month: label, amount: 0 };
+    }
+    for (const p of chartPayments) {
+      const d = new Date(p.dueDate);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      if (monthTotals[key]) monthTotals[key].amount += Number(p.amount);
+    }
+    const chartData = Object.values(monthTotals);
+
+    // Debts: pending/overdue with student
+    const debts = await prisma.payment.findMany({
+      where: { status: { in: ['PENDING', 'OVERDUE'] } },
+      include: { student: { select: { id: true, name: true, initials: true, color: true } } },
+      orderBy: { dueDate: 'asc' }
+    });
 
     res.json({
-      payments,
-      total,
-      byMethod,
-      pending: pendingAgg._sum.amount ?? 0
+      metrics: { incomeThisMonth, totalDebt, debtorCount, avgCheck },
+      chartData,
+      debts,
+      paymentLog
     });
   } catch (err) {
     next(err);

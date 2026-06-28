@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getSessions } from '../api/sessions';
 import Button from '../components/Button';
+import CreateSessionModal from '../components/CreateSessionModal';
 import { useToast } from '../context/ToastContext';
 
 const SUBJECT_COLORS = {
@@ -30,6 +31,7 @@ function isoDate(date) {
 
 export default function Schedule() {
   const [monday, setMonday] = useState(() => getMondayOf(new Date()));
+  const [createModal, setCreateModal] = useState({ open: false, date: null, hour: null });
   const { showToast } = useToast();
 
   const { data: sessions = [] } = useQuery({
@@ -81,7 +83,7 @@ export default function Schedule() {
             Неделя {fmtDate(monday)} – {fmtDate(weekEnd)}
           </p>
         </div>
-        <Button>＋ Добавить занятие</Button>
+        <Button onClick={() => setCreateModal({ open: true, date: null, hour: null })}>＋ Добавить занятие</Button>
       </div>
 
       <div className="bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
@@ -132,9 +134,8 @@ export default function Schedule() {
 
             {/* Time rows */}
             {HOURS.map(hour => (
-              <>
+              <Fragment key={hour}>
                 <div
-                  key={`t${hour}`}
                   className="text-right pr-2 py-1 text-[11px] text-[#94A3B8] border-r border-b border-[#E2E8F0] bg-[#FCFCFD] tabular-nums"
                 >
                   {String(hour).padStart(2, '0')}:00
@@ -165,7 +166,7 @@ export default function Schedule() {
                     <div
                       key={`${dayIdx}-${hour}`}
                       className="border-r border-b border-[#E2E8F0] min-h-[46px] hover:bg-[#EEF2FF] cursor-pointer group relative"
-                      onClick={() => showToast('Новое занятие', `${DAYS_RU[dayIdx]} ${String(hour).padStart(2,'0')}:00`, '＋')}
+                      onClick={() => setCreateModal({ open: true, date: isoDate(weekDays[dayIdx]), hour })}
                     >
                       <span className="absolute inset-0 flex items-center justify-center text-[11px] text-[#4F46E5] font-semibold opacity-0 group-hover:opacity-100">
                         + Добавить
@@ -173,11 +174,17 @@ export default function Schedule() {
                     </div>
                   );
                 })}
-              </>
+              </Fragment>
             ))}
           </div>
         </div>
       </div>
+      <CreateSessionModal
+        open={createModal.open}
+        onClose={() => setCreateModal({ open: false, date: null, hour: null })}
+        defaultDate={createModal.date}
+        defaultHour={createModal.hour}
+      />
     </div>
   );
 }

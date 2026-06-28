@@ -5,6 +5,7 @@ import Badge from '../components/Badge';
 import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 import StudentModal from '../components/StudentModal';
+import CreateStudentModal from '../components/CreateStudentModal';
 
 const HW_STATUS = { ASSIGNED: ['gray', 'Задано'], SUBMITTED: ['yellow', 'Сдано'], CHECKED: ['green', 'Проверено'] };
 const PAY_STATUS = { PAID: ['green', 'Оплачено'], PENDING: ['yellow', 'Ожидает'], OVERDUE: ['red', 'Просрочено'] };
@@ -12,6 +13,7 @@ const PAY_STATUS = { PAID: ['green', 'Оплачено'], PENDING: ['yellow', '�
 export default function Students() {
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  const [showCreate, setShowCreate] = useState(false);
 
   const { data: students = [], isLoading } = useQuery({
     queryKey: ['students'],
@@ -29,7 +31,7 @@ export default function Students() {
           <h1 className="text-2xl font-bold">Ученики</h1>
           <p className="text-[#64748B] text-sm mt-0.5">{students.length} активных учеников</p>
         </div>
-        <Button>＋ Добавить ученика</Button>
+        <Button onClick={() => setShowCreate(true)}>＋ Добавить ученика</Button>
       </div>
 
       <div className="bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
@@ -109,6 +111,7 @@ export default function Students() {
         studentId={selectedId}
         onClose={() => setSelectedId(null)}
       />
+      <CreateStudentModal open={showCreate} onClose={() => setShowCreate(false)} />
     </div>
   );
 }
