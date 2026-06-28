@@ -7,8 +7,8 @@ import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Students from './pages/Students';
 import Schedule from './pages/Schedule';
-const Finance = () => <div className="p-8 text-slate-500">Финансы — скоро</div>;
-const Settings = () => <div className="p-8 text-slate-500">Настройки — скоро</div>;
+import Finance from './pages/Finance';
+import Settings from './pages/Settings';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, retry: 1 } }
