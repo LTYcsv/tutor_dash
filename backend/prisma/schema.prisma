@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -18,58 +19,47 @@ model Tutor {
 }
 
 model Student {
-  id            String    @id @default(cuid())
+  id            String           @id @default(cuid())
   name          String
   initials      String?
-  color         String    @default("#4F46E5")
+  color         String           @default("#4F46E5")
   phone         String
   parentContact String?
-  enrolledSince DateTime  @default(now())
-  createdAt     DateTime  @default(now())
-
-  subjects StudentSubject[]
-  payments Payment[]
-  notes    Note[]
+  enrolledSince DateTime         @default(now())
+  createdAt     DateTime         @default(now())
+  notes         Note[]
+  payments      Payment[]
+  subjects      StudentSubject[]
 }
 
 model StudentSubject {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   studentId   String
   subject     String
   level       String
-  ratePerHour Decimal? @db.Decimal(10, 2)
-
-  student  Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  topics   Topic[]
-  sessions Session[]
+  ratePerHour Decimal?  @db.Decimal(10, 2)
+  sessions    Session[]
+  student     Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  topics      Topic[]
 }
 
 model Topic {
-  id               String  @id @default(cuid())
+  id               String         @id @default(cuid())
   studentSubjectId String
   title            String
-  completed        Boolean @default(false)
-  sortOrder        Int     @default(0)
-
-  studentSubject StudentSubject @relation(fields: [studentSubjectId], references: [id], onDelete: Cascade)
+  completed        Boolean        @default(false)
+  sortOrder        Int            @default(0)
+  studentSubject   StudentSubject @relation(fields: [studentSubjectId], references: [id], onDelete: Cascade)
 }
 
 model Session {
-  id               String        @id @default(cuid())
+  id               String         @id @default(cuid())
   studentSubjectId String
   startTime        DateTime
   durationMin      Int
-  status           SessionStatus @default(CONFIRMED)
-
-  studentSubject StudentSubject @relation(fields: [studentSubjectId], references: [id], onDelete: Cascade)
-  homework       Homework[]
-}
-
-enum SessionStatus {
-  CONFIRMED
-  UNCONFIRMED
-  COMPLETED
-  CANCELLED
+  status           SessionStatus  @default(CONFIRMED)
+  homework         Homework[]
+  studentSubject   StudentSubject @relation(fields: [studentSubjectId], references: [id], onDelete: Cascade)
 }
 
 model Homework {
@@ -78,15 +68,9 @@ model Homework {
   title     String
   status    HomeworkStatus @default(ASSIGNED)
   grade     Int?
+  dueDate   DateTime?
   updatedAt DateTime       @updatedAt
-
-  session Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-}
-
-enum HomeworkStatus {
-  ASSIGNED
-  SUBMITTED
-  CHECKED
+  session   Session        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 }
 
 model Payment {
@@ -97,9 +81,30 @@ model Payment {
   status    PaymentStatus  @default(PENDING)
   paidAt    DateTime?
   dueDate   DateTime
-  createdAt DateTime  @default(now())
+  createdAt DateTime       @default(now())
+  student   Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
 
-  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+model Note {
+  id        String   @id @default(cuid())
+  studentId String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+enum SessionStatus {
+  CONFIRMED
+  UNCONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+enum HomeworkStatus {
+  ASSIGNED
+  SUBMITTED
+  CHECKED
 }
 
 enum PaymentMethod {
@@ -112,14 +117,4 @@ enum PaymentStatus {
   PAID
   PENDING
   OVERDUE
-}
-
-model Note {
-  id        String   @id @default(cuid())
-  studentId String
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }

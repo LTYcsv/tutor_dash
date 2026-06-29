@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-29T00:00:00Z",
+  "title": "Design System: TutorDesk",
+  "extensions": {
+    "colorMeta": {
+      "indigo": {
+        "role": "primary",
+        "displayName": "Signal Indigo",
+        "canonical": "#4F46E5",
+        "tonalRamp": ["#1e1b4b", "#2d2b8a", "#3730a3", "#4338CA", "#4F46E5", "#6366F1", "#A5B4FC", "#EEF2FF"]
+      },
+      "indigo-dark": {
+        "role": "primary-deep",
+        "displayName": "Deep Indigo",
+        "canonical": "#4338CA",
+        "tonalRamp": ["#1e1b4b", "#2d2b8a", "#3730a3", "#4338CA", "#4F46E5", "#6366F1", "#A5B4FC", "#EEF2FF"]
+      },
+      "indigo-light": {
+        "role": "primary-surface",
+        "displayName": "Soft Indigo",
+        "canonical": "#EEF2FF",
+        "tonalRamp": ["#1e1b4b", "#2d2b8a", "#3730a3", "#4338CA", "#4F46E5", "#6366F1", "#A5B4FC", "#EEF2FF"]
+      },
+      "violet-gradient": {
+        "role": "accent-gradient-only",
+        "displayName": "Gradient Violet",
+        "canonical": "#7C3AED",
+        "tonalRamp": ["#2e1065", "#4a1d96", "#5b21b6", "#6d28d9", "#7C3AED", "#8B5CF6", "#C4B5FD", "#EDE9FE"]
+      },
+      "body-bg": {
+        "role": "neutral-bg",
+        "displayName": "Cool Slate",
+        "canonical": "#F8FAFC",
+        "tonalRamp": ["#0f172a", "#1e293b", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#F8FAFC"]
+      },
+      "surface": {
+        "role": "neutral-surface",
+        "displayName": "Practice White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#0f172a", "#1e293b", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#FFFFFF"]
+      },
+      "ink": {
+        "role": "neutral-text",
+        "displayName": "Ink",
+        "canonical": "#1E293B",
+        "tonalRamp": ["#020617", "#0f172a", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1"]
+      },
+      "ink-muted": {
+        "role": "neutral-text-secondary",
+        "displayName": "Ink Muted",
+        "canonical": "#64748B",
+        "tonalRamp": ["#0f172a", "#1e293b", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#F1F5F9"]
+      },
+      "border": {
+        "role": "neutral-border",
+        "displayName": "Edge",
+        "canonical": "#E2E8F0",
+        "tonalRamp": ["#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC"]
+      },
+      "green": {
+        "role": "semantic-success",
+        "displayName": "Cleared",
+        "canonical": "#16A34A",
+        "tonalRamp": ["#052e16", "#14532d", "#166534", "#15803d", "#16A34A", "#22c55e", "#86efac", "#DCFCE7"]
+      },
+      "yellow": {
+        "role": "semantic-warning",
+        "displayName": "Pending",
+        "canonical": "#CA8A04",
+        "tonalRamp": ["#422006", "#713f12", "#854d0e", "#a16207", "#CA8A04", "#eab308", "#fde047", "#FEF9C3"]
+      },
+      "red": {
+        "role": "semantic-error",
+        "displayName": "Alert",
+        "canonical": "#DC2626",
+        "tonalRamp": ["#450a0a", "#7f1d1d", "#991b1b", "#b91c1c", "#DC2626", "#ef4444", "#fca5a5", "#FEE2E2"]
+      },
+      "blue": {
+        "role": "semantic-info",
+        "displayName": "Info",
+        "canonical": "#2563EB",
+        "tonalRamp": ["#172554", "#1e3a8a", "#1e40af", "#1d4ed8", "#2563EB", "#3b82f6", "#93c5fd", "#DBEAFE"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display / Metric", "purpose": "Dashboard metric values (₽12,400), modal section titles. Largest scannable numbers." },
+      "headline": { "displayName": "Headline", "purpose": "Page titles only: Дашборд, Ученики, Расписание, Финансы, Настройки." },
+      "title": { "displayName": "Title", "purpose": "Logo wordmark, modal student names." },
+      "body": { "displayName": "Body", "purpose": "All table cells, list items, form labels, descriptions. The default." },
+      "label": { "displayName": "Label / Column Header", "purpose": "Table column headers only. Uppercase tracked. Never used as section eyebrows." }
+    },
+    "shadows": [
+      { "name": "ambient", "value": "0 1px 2px rgba(0,0,0,0.04)", "purpose": "Cards and panels at rest. The minimum structural separation from the body." },
+      { "name": "lifted", "value": "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)", "purpose": "Cards on hover, sticky top navigation." },
+      { "name": "modal", "value": "0 10px 25px rgba(0,0,0,0.10), 0 4px 10px rgba(0,0,0,0.05)", "purpose": "Modals and dialogs only. The deepest layer." },
+      { "name": "toast", "value": "0 4px 20px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)", "purpose": "Toast notifications." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for state transitions (nav hover, button color, badge click)." },
+      { "name": "pop", "value": "scale(0.96) translateY(10px) to identity, 0.25s ease", "purpose": "Modal entrance animation." },
+      { "name": "slideIn", "value": "translateX(120%) to identity, 0.3s ease", "purpose": "Toast notification entrance." },
+      { "name": "reduced-motion", "value": "transition: opacity 0.15s", "purpose": "@media (prefers-reduced-motion: reduce): crossfade only, no transforms." }
+    ],
+    "breakpoints": [
+      { "name": "desktop-only", "value": "min-width: 1024px", "purpose": "MVP is desktop-only. No mobile breakpoints." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA: add student, add session, save settings.",
+      "html": "<button class=\"ds-btn-primary\">+ Добавить ученика</button>",
+      "css": ".ds-btn-primary { background: #4F46E5; color: #ffffff; padding: 9px 16px; font-size: 14px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: none; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s; } .ds-btn-primary:hover { background: #4338CA; } .ds-btn-primary:focus-visible { outline: 2px solid #4F46E5; outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary actions: close modal, week navigation arrows.",
+      "html": "<button class=\"ds-btn-ghost\">Закрыть</button>",
+      "css": ".ds-btn-ghost { background: #ffffff; color: #1E293B; padding: 9px 16px; font-size: 14px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #E2E8F0; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s; } .ds-btn-ghost:hover { background: #F8FAFC; } .ds-btn-ghost:focus-visible { outline: 2px solid #4F46E5; outline-offset: 2px; } .ds-btn-ghost:disabled { opacity: 0.6; cursor: not-allowed; }"
+    },
+    {
+      "name": "Status Badge — Green",
+      "kind": "chip",
+      "refersTo": "badge-green",
+      "description": "Paid, completed, checked. Success state only.",
+      "html": "<span class=\"ds-badge ds-badge-green\">Оплачено</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 9999px; font-size: 12px; font-weight: 600; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; } .ds-badge-green { background: #DCFCE7; color: #16A34A; } .ds-badge-yellow { background: #FEF9C3; color: #CA8A04; } .ds-badge-red { background: #FEE2E2; color: #DC2626; } .ds-badge-blue { background: #DBEAFE; color: #2563EB; } .ds-badge-gray { background: #F1F5F9; color: #64748B; } .ds-badge[data-clickable] { cursor: pointer; } .ds-badge[data-clickable]:hover { filter: brightness(0.95); }"
+    },
+    {
+      "name": "Student Avatar",
+      "kind": "custom",
+      "description": "Circle avatar showing student initials in their assigned color. Three sizes.",
+      "html": "<div class=\"ds-avatar ds-avatar-md\" style=\"background: #4F46E5;\">АИ</div>",
+      "css": ".ds-avatar { border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; flex-shrink: 0; } .ds-avatar-sm { width: 32px; height: 32px; font-size: 12px; } .ds-avatar-md { width: 38px; height: 38px; font-size: 13px; } .ds-avatar-lg { width: 64px; height: 64px; font-size: 22px; }"
+    },
+    {
+      "name": "Data Card / Panel",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Primary container for all page sections. White, 16px radius, subtle border + shadow.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-header\"><span class=\"ds-card-title\">Занятия сегодня</span><a class=\"ds-card-action\">Всё расписание →</a></div><div class=\"ds-card-body\">Content</div></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); overflow: hidden; } .ds-card-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #E2E8F0; } .ds-card-title { font-size: 15px; font-weight: 700; color: #1E293B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-card-action { font-size: 13px; font-weight: 600; color: #4F46E5; cursor: pointer; text-decoration: none; } .ds-card-action:hover { text-decoration: underline; } .ds-card-body { padding: 20px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "description": "Search, form fields, profile settings. Focus shifts border to Signal Indigo.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\">Email</label><input class=\"ds-input\" type=\"email\" placeholder=\"anna@tutordesk.ru\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; } .ds-label { font-size: 13px; font-weight: 600; color: #1E293B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-input { padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1E293B; background: #F8FAFC; outline: none; transition: border-color 0.15s, background 0.15s; width: 100%; } .ds-input::placeholder { color: #94A3B8; } .ds-input:focus { border-color: #4F46E5; background: #ffffff; } .ds-input:disabled { opacity: 0.6; cursor: not-allowed; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "description": "Sticky 60px bar. Logo + nav items + tutor avatar. Active item uses Soft Indigo bg.",
+      "html": "<nav class=\"ds-topnav\"><div class=\"ds-logo\"><div class=\"ds-logo-mark\">T</div><span>Tutor<span class=\"ds-logo-accent\">Desk</span></span></div><div class=\"ds-nav-items\"><a class=\"ds-nav-item ds-nav-active\">Дашборд</a><a class=\"ds-nav-item\">Ученики</a><a class=\"ds-nav-item\">Расписание</a></div><div class=\"ds-nav-avatar\">АИ</div></nav>",
+      "css": ".ds-topnav { background: #ffffff; border-bottom: 1px solid #E2E8F0; height: 60px; display: flex; align-items: center; padding: 0 24px; position: sticky; top: 0; z-index: 50; box-shadow: 0 1px 2px rgba(0,0,0,0.04); gap: 0; } .ds-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; color: #1E293B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin-right: 40px; white-space: nowrap; } .ds-logo-mark { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; } .ds-logo-accent { color: #4F46E5; } .ds-nav-items { display: flex; gap: 4px; } .ds-nav-item { padding: 8px 16px; border-radius: 8px; color: #64748B; font-weight: 500; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; cursor: pointer; text-decoration: none; transition: all 0.15s; } .ds-nav-item:hover { background: #F8FAFC; color: #1E293B; } .ds-nav-active { background: #EEF2FF; color: #4F46E5; font-weight: 600; } .ds-nav-avatar { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; background: #4F46E5; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "card",
+      "description": "Dashboard stat card: label + large number + icon chip. 4-up grid layout.",
+      "html": "<div class=\"ds-metric-card\"><div class=\"ds-metric-content\"><div class=\"ds-metric-label\">Доход за месяц</div><div class=\"ds-metric-value\">₽24,000</div></div><div class=\"ds-metric-icon ds-metric-icon-green\">💰</div></div>",
+      "css": ".ds-metric-card { background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; transition: transform 0.15s, box-shadow 0.15s; cursor: default; } .ds-metric-card:hover { transform: translateY(-2px); box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04); } .ds-metric-content { display: flex; flex-direction: column; gap: 4px; } .ds-metric-label { font-size: 13px; font-weight: 500; color: #64748B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-metric-value { font-size: 28px; font-weight: 700; color: #1E293B; letter-spacing: -0.02em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-metric-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; } .ds-metric-icon-green { background: #DCFCE7; color: #16A34A; } .ds-metric-icon-blue { background: #DBEAFE; color: #2563EB; } .ds-metric-icon-indigo { background: #EEF2FF; color: #4F46E5; } .ds-metric-icon-red { background: #FEE2E2; color: #DC2626; }"
+    },
+    {
+      "name": "Toast Notification",
+      "kind": "custom",
+      "description": "Bottom-right stack. Success-green left border by default. Slides in from right.",
+      "html": "<div class=\"ds-toast\"><div class=\"ds-toast-icon\">✓</div><div class=\"ds-toast-body\"><div class=\"ds-toast-title\">Сохранено</div><div class=\"ds-toast-msg\">Настройки успешно обновлены</div></div></div>",
+      "css": ".ds-toast { background: #ffffff; border: 1px solid #E2E8F0; border-left: 4px solid #16A34A; border-radius: 12px; padding: 14px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 12px; min-width: 300px; max-width: 400px; } .ds-toast-icon { width: 32px; height: 32px; border-radius: 50%; background: #DCFCE7; color: #16A34A; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; } .ds-toast-body { display: flex; flex-direction: column; gap: 2px; } .ds-toast-title { font-size: 14px; font-weight: 600; color: #1E293B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .ds-toast-msg { font-size: 13px; color: #64748B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Tutor's Practice",
+    "overview": "TutorDesk looks and feels like a polished private professional practice — the visual equivalent of a well-prepared consultant's workspace. Not corporate-cold, not startup-exuberant: confident and warm, with the unhurried exactness of someone who has done this for years. Every screen says I know what I'm doing without raising its voice. The indigo primary is the tutor's signature color — authoritative, focused, present. Everything else steps back so data can lead.\n\nThe layout is dense by design. A tutor opens this between lessons; they need status at a glance, not guided tours. Cards contain real information, not decorative content. Motion is fast and purposeful — confirmation that something happened, never a performance for its own sake.\n\nThis system explicitly rejects: generic Tailwind-starter card grids (identical icon + heading + text blocks on a cream background), cold enterprise admin tables with zero personality, and bloated SaaS apps that design for ten use cases when this tool has one.",
+    "keyCharacteristics": [
+      "Indigo as the single accent voice — used precisely, not decoratively",
+      "Tonal layering: white cards over cool-gray body, light shadows structural not ornamental",
+      "System sans-serif at 14px body — readable, unsexy, correct",
+      "Status badges carry meaning (green/yellow/red/blue) — never used as decoration",
+      "Cards with border-radius: 16px and border: 1px solid #E2E8F0 as the primary container vocabulary"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Signal Indigo appears in one role per screen: the active state, the primary CTA, or the data highlight — never all three simultaneously. When everything is accented, nothing is.", "section": "colors" },
+      { "name": "The Semantic Contract", "body": "Green = done/paid. Yellow = pending. Red = overdue/alert. Blue = confirmed/info. These four pairs are not available for decorative or arbitrary use.", "section": "colors" },
+      { "name": "The No-Eyebrow Rule", "body": "Uppercase tracked labels appear exclusively as table column headers. They are not used as section kickers, eyebrows above page headings, or decorative dividers elsewhere.", "section": "typography" },
+      { "name": "The Flat-at-Rest Principle", "body": "Cards carry an ambient shadow at rest. Hover states add a small transform and slightly larger shadow. Shadows never increase in size when content is static.", "section": "elevation" },
+      { "name": "The Border-First Rule", "body": "Every card carries border: 1px solid #E2E8F0 as its primary definition. The shadow is additive confirmation, not the primary visual boundary.", "section": "elevation" },
+      { "name": "The No-Nested-Cards Rule", "body": "Cards never contain cards. A list item inside a card uses row hover and a border-b divider, not another card.", "section": "components" }
+    ],
+    "dos": [
+      "Do use Signal Indigo (#4F46E5) as the single interactive accent: active nav, primary CTA, focus indicator. Pick one role per screen.",
+      "Do lead every data panel with a header row (border-b, py-3.5 px-5) that names the content and optionally carries a single action link (right-aligned).",
+      "Do use the five semantic badge pairs exactly as specified. Green = done. Yellow = pending. Red = alert. Blue = confirmed. Gray = neutral.",
+      "Do keep body type at 14px. Density is a feature.",
+      "Do give every card a border: 1px solid #E2E8F0.",
+      "Do use border-radius: 16px for primary cards/panels and border-radius: 8px for buttons and inputs.",
+      "Do implement @media (prefers-reduced-motion: reduce) for all animations.",
+      "Do maintain minimum 4.5:1 contrast for all body text including placeholder text and badge labels.",
+      "Do put uppercase tracked labels exclusively on table column headers. Nowhere else."
+    ],
+    "donts": [
+      "Don't use generic Tailwind-starter-kit layouts — identical icon + heading + text cards on a gray/cream background.",
+      "Don't use cold enterprise admin panel aesthetics — zero-personality dense tables, no hover states, audit-log spacing.",
+      "Don't invent new badge colors for new statuses. Five pairs are the entire contract.",
+      "Don't use border-left wider than 1px as a decorative accent on cards, list items, or callouts.",
+      "Don't use gradient text (background-clip: text). Gradient lives in the logo mark only.",
+      "Don't use glassmorphism on surfaces other than the modal backdrop.",
+      "Don't add uppercase tracked eyebrows above section headings, page titles, or card panels.",
+      "Don't build nested cards.",
+      "Don't put the same shadow on interactive and non-interactive cards.",
+      "Don't use Signal Indigo on more than one role simultaneously per screen."
+    ]
+  }
+}
