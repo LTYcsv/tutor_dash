@@ -9,6 +9,7 @@ import Students from './pages/Students';
 import Schedule from './pages/Schedule';
 import Finance from './pages/Finance';
 import Settings from './pages/Settings';
+import Homework from './pages/Homework';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, retry: 1 } }
@@ -27,6 +28,7 @@ function AppRoutes() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/students" element={<Students />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/homework" element={<Homework />} />
         <Route path="/finance" element={<Finance />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
