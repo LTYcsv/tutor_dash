@@ -35,7 +35,7 @@ export default function CreateStudentModal({ open, onClose }) {
       </div>
       <div className="p-6 space-y-4">
         <div>
-          <label className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1.5 block">Имя *</label>
+          <label className="text-[13px] font-semibold text-[#1E293B] mb-1.5 block">Имя <span className="text-[#DC2626]">*</span></label>
           <input
             value={form.name}
             onChange={set('name')}
@@ -44,7 +44,7 @@ export default function CreateStudentModal({ open, onClose }) {
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1.5 block">Телефон *</label>
+          <label className="text-[13px] font-semibold text-[#1E293B] mb-1.5 block">Телефон <span className="text-[#DC2626]">*</span></label>
           <input
             value={form.phone}
             onChange={set('phone')}
@@ -54,7 +54,7 @@ export default function CreateStudentModal({ open, onClose }) {
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1.5 block">Предмет *</label>
+            <label className="text-[13px] font-semibold text-[#1E293B] mb-1.5 block">Предмет <span className="text-[#DC2626]">*</span></label>
             <input
               value={form.subject}
               onChange={set('subject')}
@@ -67,7 +67,7 @@ export default function CreateStudentModal({ open, onClose }) {
             </datalist>
           </div>
           <div>
-            <label className="text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1.5 block">Уровень *</label>
+            <label className="text-[13px] font-semibold text-[#1E293B] mb-1.5 block">Уровень <span className="text-[#DC2626]">*</span></label>
             <select
               value={form.level}
               onChange={set('level')}
