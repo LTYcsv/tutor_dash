@@ -10,13 +10,44 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL_16-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://postgresql.org)
 [![Docker](https://img.shields.io/badge/Docker_Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/compose)
 [![Tests](https://img.shields.io/badge/56_тестов-passing-22C55E?style=flat-square&logo=jest&logoColor=white)]()
-[![Status](https://img.shields.io/badge/статус-завершён-8B5CF6?style=flat-square)]()
+[![Status](https://img.shields.io/badge/статус-в_разработке-F59E0B?style=flat-square)]()
 
 </div>
 
 ---
 
 Учебный full-stack проект — личный дашборд для независимого репетитора. Ученики с профилями, расписание занятий, домашние задания, платежи и финансовая аналитика в одном месте. Стек: React + Express + PostgreSQL, деплой через Docker Compose.
+
+---
+
+## Интерфейс
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center"><strong>Дашборд</strong></td>
+<td align="center"><strong>Ученики</strong></td>
+<td align="center"><strong>Расписание</strong></td>
+</tr>
+<tr>
+<td><img src="screenshots/dashboard.png" alt="Дашборд — метрики, занятия, лента активности" width="360"></td>
+<td><img src="screenshots/students.png" alt="Ученики — таблица с предметами и статусами" width="360"></td>
+<td><img src="screenshots/schedule.png" alt="Расписание — недельный календарь" width="360"></td>
+</tr>
+<tr>
+<td align="center"><strong>Домашние задания</strong></td>
+<td align="center"><strong>Финансы</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="screenshots/homework.png" alt="Домашние задания — фильтры по статусу, оценки" width="360"></td>
+<td><img src="screenshots/finance.png" alt="Финансы — доход, задолженности, график" width="360"></td>
+<td></td>
+</tr>
+</table>
+
+</div>
 
 ---
 
